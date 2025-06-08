@@ -116,8 +116,6 @@ docker logs safeheat-container
 
 ---
 
-## 👨‍💻 Autor
-
 ##👥 Integrantes
 Felipe Ulson Sora – RM555462 – @felipesora
 Augusto Lope Lyra – RM558209 – @lopeslyra10
