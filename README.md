@@ -118,4 +118,9 @@ docker logs safeheat-container
 
 ## 👨‍💻 Autor
 
-Desenvolvido por [Seu Nome] para a FIAP – Global Solution 2025.
+##👥 Integrantes
+Felipe Ulson Sora – RM555462 – @felipesora
+Augusto Lope Lyra – RM558209 – @lopeslyra10
+Vinicius Ribeiro Nery Costa – RM559165 – @ViniciusRibeiroNery
+
+FIAP – Global Solution 2025.
