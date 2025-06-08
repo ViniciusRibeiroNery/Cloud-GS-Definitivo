@@ -115,6 +115,83 @@ docker logs safeheat-container
 
 ---
 
+## 🧱 Passo a passo para rodar o banco de dados Oracle em containers Docker
+
+### 1. Baixar a imagem do Oracle Database (apenas na primeira vez)
+
+```bash
+docker pull container-registry.oracle.com/database/free:latest
+```
+
+### 2. Criar e rodar o container do banco de dados
+
+```bash
+docker run -d --name oracle-db \
+  -p 1521:1521 \
+  -e ORACLE_PWD=Admin123 \
+  -e ORACLE_CHARACTERSET=AL32UTF8 \
+  -v oracle_data:/opt/oracle/oradata \
+  container-registry.oracle.com/database/free:latest
+```
+
+### 3. Verificar os logs até o banco estar pronto
+
+```bash
+docker logs -f oracle-db
+```
+
+### 4. Verificar se o container está rodando
+
+```bash
+docker ps
+```
+
+### 5. Acessar o container com bash
+
+```bash
+docker exec -it oracle-db bash
+```
+
+### 6. Entrar no SQL*Plus
+
+Você pode usar uma das opções abaixo, dependendo do seu container:
+
+```bash
+sqlplus system/Admin123@//localhost:1521/FREEPDB1
+```
+
+### 7. Fazer login com usuário e senha
+
+```
+Username: system
+Password: Admin123
+```
+
+### 8. (Opcional) Alterar sessão para o container PDB correto
+
+```sql
+ALTER SESSION SET CONTAINER = FREEPDB1;
+```
+
+### 9. Criar tabela necessária para a aplicação
+
+```sql
+CREATE TABLE sh_usuarios (
+  id_usuario NUMBER(19) GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  email VARCHAR2(150 CHAR),
+  nome VARCHAR2(150 CHAR),
+  senha VARCHAR2(150 CHAR)
+);
+```
+
+---
+
+## ✅ Status da Aplicação
+
+Após seguir os passos acima, o backend Spring Boot deverá se conectar ao banco com sucesso e iniciar com as entidades mapeadas corretamente.
+
+---
+
 ## 👥 Integrantes
 
 - **Felipe Ulson Sora** – RM555462 – [@felipesora](https://github.com/felipesora)  
